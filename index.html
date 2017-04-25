@@ -1,0 +1,106 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<style>
+  body {
+    padding: 100px;
+    width: 1000px;
+    margin: auto;
+    text-align: left;
+    font-weight: 300;
+    font-family: 'Open Sans', sans-serif;
+    color: #121212;
+  }
+  h1, h2, h3, h4 {
+    font-family: 'Source Sans Pro', sans-serif;
+  }
+</style>
+<title>CS 184 Final Project Milestone</title>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<link href="https://fonts.googleapis.com/css?family=Open+Sans|Source+Sans+Pro" rel="stylesheet">
+</head>
+
+<body>
+
+  <h1 align="middle">Music Visualizer</h1>
+  <h2 align="middle">Team Members: Priya Kumar, Diego Alcantar</h2>
+
+  <br><br>
+
+  <div>
+
+  <h2 align="middle">Project Summary</h2>
+
+  <p>This project will result in a music visualization program that will render in real time. The program will
+     take in a .wav file as input and as a result of the magnitude of certain frequencies that are playing at any given moment
+     a visual will be produced that will be representative of them.
+  </p>
+
+  <h2 align="middle">Project Milestone Info</h2>
+  <p>
+  Up to this point we have completed the '.wav' file frequency decomposition and can store the information in a meaningful way to animate out a basic visualizer. Our visualizer runs off of an edited version of the bezier curve code that was completed in project 2. The frequency decomposition was done in python due to its relative ease compared to C++ in performing the Fast Fourier Transform(FFT) and the animation was done in C++. 
+
+
+<h3 align="left">Frequency Decomposition(Python):</h3>
+
+The purpose of this script found in 'sound_processing' is to do the FFT on a selected .wav file and then write to a file 'sndfile.bzc' which can then be incorporated into an edited version of Project 2 to create the visualizer. The file can be run by navigating to its directory and then calling the command:
+  <div>
+  <br>
+
+  python wav_analyze.py test1
+  <div>
+  <br>
+  The python script requires the following imports:
+  <div>
+    &nbsp&nbsp&nbsp&nbsp&nbsp <i>import sys</i>
+  <div>
+    &nbsp&nbsp&nbsp&nbsp&nbsp <i>from pylab import *</i>
+  <div>  
+    &nbsp&nbsp&nbsp&nbsp&nbsp <i>import numpy</i>
+  <div>  
+    &nbsp&nbsp&nbsp&nbsp&nbsp <i>import scipy.io.wavfile as wav</i>
+  <div>
+  <br>
+
+Included in 'test_sounds' are a variety of sounds along with their respective spectrograms to see their frequency spectrums. These spectrograms were used to test the functionality of our C++ animation. If you want to run the code on new .wav files then add them in this folder.
+
+
+<h3 align="left">Music Visualizer(C++):</h3>
+<div>
+The purpose of the C++ program found in 'proj2_visualizer_edit' is to take in the input of the previous python script and visualize the movements. We accomplished this by using the bezier curve feature and moving the various points to relative heights according to their frequency magnitude. This portion can be run with the following:
+<div>
+<br>
+
+  &nbsp&nbsp&nbsp&nbsp&nbsp <i>cd proj2_visualizer_edit</i>
+  <div>
+  &nbsp&nbsp&nbsp&nbsp&nbsp <i>mkdir build</i>
+  <div>
+  &nbsp&nbsp&nbsp&nbsp&nbsp <i>cd build</i>
+  <div> 
+  &nbsp&nbsp&nbsp&nbsp&nbsp <i>cmake ..</i>
+  <div>
+  &nbsp&nbsp&nbsp&nbsp&nbsp <i>make</i> 
+  <div>
+  &nbsp&nbsp&nbsp&nbsp&nbsp <i>./meshedit ../../sound_processing/sndfile.bzc</i>
+  <div>
+  <br>
+This takes in the sndfile.bzc file created by the most recent call of the python script and then displays the initial image. Press 'q' to begin the animation. For testing, these animations were executed and followed along with the responding spectrogram images to see if they looked similar. After the animation ends you can press 'q' again to have the animation play again.
+  <div>
+
+
+<h3 align="left">In Progress Methods:</h3>
+
+<UL>
+<LI> Developing a pipeline to instantly execute both python and c++ scripts at the same time
+<LI> Be able to play the song at the same time as the execution of the animation(currently the animation plays for the same amount of time as the song duration but playing the song at the same time has been a pain)
+<LI> Creating a 'save' feature to be able to skip the .wav file loading if it has already been done for a given file. (This is in an effort to reduce the amount of time that it takes to execute)
+<LI> Transitioning the code to work in either the bezier surface setting or with the cloth animation project to have a more 3D and stylistic animation.  
+</UL>
+
+
+  </p>
+  
+
+</body>
+</html>
+
+
